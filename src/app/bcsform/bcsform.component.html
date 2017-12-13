@@ -1,0 +1,89 @@
+{{bcsQuestion.q}}
+<div class="container">
+  <h1>Question Form</h1>
+  <form (ngSubmit)="onSubmit()" #bcsForm="ngForm">
+
+    <div class="form-group">
+      <label for="question">Question:</label>
+      <textarea class="form-control" id="question"
+                required
+                [(ngModel)]="bcsQuestion.question" name="question"
+                #question="ngModel">
+      </textarea>
+      <div [hidden]="question.valid || question.pristine"
+           class="alert alert-danger">
+        Question is Required
+      </div>
+      <!--Question: testing this: {{bcsQuestion.question}}-->
+    </div>
+
+    <div class="form-group">
+      <label for="optionOne">Option One:</label>
+      <input type="text" class="form-control" id="optionOne"
+             required
+             [(ngModel)]="bcsQuestion.optionOne" name="optionOne"
+             #optionOne="ngModel">
+    </div>
+    <div [hidden]="optionOne.valid || optionOne.pristine"
+         class="alert alert-danger">
+      Option One is Required
+    </div>
+
+    <div class="form-group">
+      <label for="optionTwo">Option Two:</label>
+      <input type="text" class="form-control" id="optionTwo"
+             required
+             [(ngModel)]="bcsQuestion.optionTwo" name="optionTwo"
+             #optionTwo="ngModel">
+    </div>
+    <div [hidden]="optionTwo.valid || optionTwo.pristine"
+         class="alert alert-danger">
+      Option Two is Required
+    </div>
+
+    <div class="form-group">
+      <label for="optionThree">Option Three:</label>
+      <input type="text" class="form-control" id="optionThree"
+             required
+             [(ngModel)]="bcsQuestion.optionThree" name="optionThree"
+             #optionThree="ngModel">
+    </div>
+    <div [hidden]="optionThree.valid || optionThree.pristine"
+         class="alert alert-danger">
+      Option Three is Required
+    </div>
+
+    <div class="form-group">
+      <label for="optionFour">Option Four:</label>
+      <input type="text" class="form-control" id="optionFour"
+             required
+             [(ngModel)]="bcsQuestion.optionFour" name="optionFour"
+             #optionFour="ngModel">
+    </div>
+    <div [hidden]="optionFour.valid || optionFour.pristine"
+         class="alert alert-danger">
+      Option Four is Required
+    </div>
+
+    <div class="form-group">
+      <label for="rightAnswer">Right Answer:</label>
+      <input type="number" class="form-control" id="rightAnswer"
+             required
+             [(ngModel)]="bcsQuestion.rightAnswer" name="rightAnswer"
+             #rightAnswer="ngModel">
+    </div>
+    <div [hidden]="rightAnswer.valid || rightAnswer.pristine"
+         class="alert alert-danger">
+      Right Answer is Required
+    </div>
+
+    <div class="form-group">
+      <label for="remark">Remark:</label>
+      <input type="text" class="form-control" id="remark"
+             [(ngModel)]="bcsQuestion.remark" name="remark">
+    </div>
+
+    <button type="submit" class="btn btn-default" (click)="newQuestion()" [disabled]="!bcsForm.form.valid">Submit</button>
+
+  </form>
+</div>
