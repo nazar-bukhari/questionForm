@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bcs } from '../bcs';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-bcsform',
@@ -7,6 +8,8 @@ import { Bcs } from '../bcs';
   styleUrls: ['./bcsform.component.css']
 })
 export class BcsformComponent {
+
+  constructor(private http: HttpClient) {}
 
    bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2 , 'NaN');
    submitted = false;
@@ -17,6 +20,22 @@ export class BcsformComponent {
      return JSON.stringify(this.bcsQuestion);
    }
    newQuestion() {
-     this.bcsQuestion = new Bcs('New Question?', '', '', '', '', 2 , '');
+     // this.bcsQuestion = new Bcs('New Question?', '', '', '', '', 2 , '');
+     console.log(JSON.stringify(this.bcsQuestion));
+
+     this.http
+       .post('/questions', JSON.stringify(this.bcsQuestion))
+       // See below - subscribe() is still necessary when using post().
+       .subscribe();
    }
+
+
+  // ngOnInit(): void {
+  //   // Make the HTTP request:
+  //   this.http
+  //     .post('/questions', JSON.stringify(this.bcsQuestion))
+  //     // See below - subscribe() is still necessary when using post().
+  //     .subscribe();
+  // }
 }
+
