@@ -24,18 +24,9 @@ export class BcsformComponent {
      console.log(JSON.stringify(this.bcsQuestion));
 
      this.http
-       .post('/questions', JSON.stringify(this.bcsQuestion))
+       .post('/questions/save', JSON.stringify(this.bcsQuestion))
        // See below - subscribe() is still necessary when using post().
        .subscribe();
    }
-
-
-  // ngOnInit(): void {
-  //   // Make the HTTP request:
-  //   this.http
-  //     .post('/questions', JSON.stringify(this.bcsQuestion))
-  //     // See below - subscribe() is still necessary when using post().
-  //     .subscribe();
-  // }
 }
 
