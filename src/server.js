@@ -1,20 +1,19 @@
-/**
- * Created by ratul on 12/23/17.
- */
+// grab the packages we need
+var express = require('express');
+var app = express();
+var cors = require('cors');
+var port = process.env.PORT || 8888;
 
-var restify = require('restify');
+// routes will go here
 
-function saveQuestion(request, response) {
+app.post('/questions/save', function(req, res) {
 
-  console.log('Request Received: ',request);
-}
-
-const server = restify.createServer({
-
-  name: 'bcsServer',
-  version: '1.0.0'
+  console.log("hello");
+  res.status(200).send(req.params.id);
 });
 
-server.get('/questions/save',saveQuestion);
+app.use(cors());
 
-server.listen(8888);
+// start the server
+app.listen(port);
+console.log('Server started! At http://localhost:' + port);

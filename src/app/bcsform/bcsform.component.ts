@@ -20,12 +20,10 @@ export class BcsformComponent {
      return JSON.stringify(this.bcsQuestion);
    }
    newQuestion() {
-     // this.bcsQuestion = new Bcs('New Question?', '', '', '', '', 2 , '');
      console.log(JSON.stringify(this.bcsQuestion));
 
      this.http
-       .post('/questions/save', JSON.stringify(this.bcsQuestion))
-       // See below - subscribe() is still necessary when using post().
+       .post('http://localhost:8888/questions/save', JSON.stringify(this.bcsQuestion))
        .subscribe();
    }
 }
