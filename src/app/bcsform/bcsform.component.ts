@@ -19,11 +19,13 @@ export class BcsformComponent {
    get questionModel(){
      return JSON.stringify(this.bcsQuestion);
    }
+
    newQuestion() {
      console.log(JSON.stringify(this.bcsQuestion));
+     const body = {name: 'Brad'};
 
      this.http
-       .post('http://localhost:8888/questions/save', JSON.stringify(this.bcsQuestion))
+       .post('http://localhost:8888/questions/save', body)
        .subscribe();
    }
 }

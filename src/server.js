@@ -1,18 +1,20 @@
-// grab the packages we need
 var express = require('express');
 var app = express();
 var cors = require('cors');
 var port = process.env.PORT || 8888;
+var bodyParser = require('body-parser');
 
-// routes will go here
-
-app.post('/questions/save', function(req, res) {
-
-  console.log("hello");
-  res.status(200).send(req.params.id);
-});
 
 app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
+app.post('/questions/save', function(req, res) {
+  console.log("request received: ",req.body);
+  res.status(200).send('ok');
+});
 
 // start the server
 app.listen(port);
