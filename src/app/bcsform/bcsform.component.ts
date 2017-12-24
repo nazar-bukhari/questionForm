@@ -22,7 +22,7 @@ export class BcsformComponent {
       .post('http://localhost:8888/questions/save', bcsForm.value)
       .subscribe(
         data => console.log('data: ', data),
-        err => console.log('An error occurred:', err), alert('Server Error.Data Not Saved')
+        err => alert('Server Error.Data Not Saved')
       );
   }
 }
