@@ -1,18 +1,32 @@
 // grab the packages we need
-var express = require('express');
-var app = express();
-var cors = require('cors');
-var port = process.env.PORT || 8888;
+let express = require('express');
+let app = express();
+let cors = require('cors');
+const port = process.env.PORT || 8888;
+// let router = express.Router();
+const bodyParser = require('body-parser');
 
-// routes will go here
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cors());
+app.use(cors({origin: 'http://localhost:4200'}));
+
+// router.post('/questions/save',saveQuestion);
+//
+// function saveQuestion(request,response){
+//
+//   console.log("hello",request.body);
+//   response.end();
+// }
 
 app.post('/questions/save', function(req, res) {
 
-  console.log("hello");
-  res.status(200).send(req.params.id);
+  console.log("hello",req.body);
+  res.send('End');
+  // res.status(200).send(req.params.id);
 });
-
-app.use(cors());
 
 // start the server
 app.listen(port);

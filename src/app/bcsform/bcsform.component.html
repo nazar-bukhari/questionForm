@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Question Form</h1>
-  <form (ngSubmit)="onSubmit()" #bcsForm="ngForm">
+  <form  #bcsForm="ngForm" (ngSubmit)="onSubmit(bcsForm)">
 
     <div class="form-group">
       <label for="question">Question:</label>
@@ -82,7 +82,8 @@
              [(ngModel)]="bcsQuestion.remark" name="remark">
     </div>
 
-    <button type="submit" class="btn btn-default" (click)="newQuestion()" [disabled]="!bcsForm.form.valid">Submit</button>
+    <!--<button type="submit" class="btn btn-default" (click)="newQuestion()" [disabled]="!bcsForm.form.valid">Submit</button>-->
+    <button type="submit" class="btn btn-default" [disabled]="!bcsForm.form.valid">Submit</button>
 
   </form>
 </div>

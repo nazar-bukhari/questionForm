@@ -13,18 +13,23 @@ export class BcsformComponent {
 
    bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2 , 'NaN');
    submitted = false;
-   onSubmit() {
+   onSubmit(bcsForm) {
+     const val = 'test';
      this.submitted = true;
-   }
-   get questionModel(){
-     return JSON.stringify(this.bcsQuestion);
-   }
-   newQuestion() {
-     console.log(JSON.stringify(this.bcsQuestion));
-
+     console.log(bcsForm.value);
      this.http
-       .post('http://localhost:8888/questions/save', JSON.stringify(this.bcsQuestion))
+       .post('http://localhost:8888/questions/save', bcsForm.value)
        .subscribe();
    }
+   // get questionModel(){
+   //   return JSON.stringify(this.bcsQuestion);
+   // }
+   // newQuestion() {
+   //   console.log(JSON.stringify(this.bcsQuestion));
+   //
+   //   this.http
+   //     .post('http://localhost:8888/questions/save', JSON.stringify(this.bcsQuestion))
+   //     .subscribe();
+   // }
 }
 
