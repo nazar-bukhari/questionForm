@@ -9,9 +9,9 @@ import {HttpClient} from "@angular/common/http";
 })
 export class BcsformComponent {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
+  private questionSet;
   submitted = false;
   bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2, 'NaN');
 
@@ -20,25 +20,10 @@ export class BcsformComponent {
     console.log(bcsForm.value);
     this.http
       .post('http://localhost:8888/questions/save', bcsForm.value)
-      .subscribe();
+      .subscribe(
+        data => console.log('data: ', data),
+        err => console.log('An error occurred:', err), alert('Server Error.Data Not Saved')
+      );
   }
-
-  get questionModel() {
-    return JSON.stringify(this.bcsQuestion);
-  }
-
-  newQuestion() {
-    console.log(JSON.stringify(this.bcsQuestion));
-    const body = {name: 'Brad'};
-
-    this.http
-      .post('http://localhost:8888/questions/save', body)
-      .subscribe();
-  }
-
-  // get questionModel(){
-  //   return JSON.stringify(this.bcsQuestion);
-  // }
-
 }
 
