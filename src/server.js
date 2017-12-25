@@ -7,7 +7,7 @@ let app = express();
 const port = process.env.PORT || 8888;
 
 const connection = mysql.createConnection({
-  host: '192.168.0.122',
+  host: '127.0.0.1',
   user: 'root',
   password: 'root',
   database: 'bcs'
@@ -24,6 +24,7 @@ app.use(cors());
 app.use(cors({origin: 'http://localhost:4200'}));
 
 app.post('/questions/save',saveQuestion);
+app.get('/getAllQuestions',getAllQuestions);
 
 function saveQuestion(req,res){
 
@@ -41,6 +42,16 @@ function saveQuestion(req,res){
     }
   });
   res.send(req.body);
+}
+
+function getAllQuestions(req,res){
+
+  let sql = 'select * from questions';
+  connection.query(sql,function (err, row, fields) {
+    if(err) throw err;
+    res.send(row);
+  });
+
 }
 
 app.listen(port);
