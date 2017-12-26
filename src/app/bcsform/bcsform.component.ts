@@ -10,8 +10,8 @@ import { BcsService } from '../bcs.service';
 })
 export class BcsformComponent implements OnInit {
 
-  errorMessage: string;
   private questions: Bcs[];
+  errorMessage: String;
 
   submitted = false;
   bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2, 'NaN');
@@ -30,15 +30,14 @@ export class BcsformComponent implements OnInit {
         err => alert('Server Error.Data Not Saved')
       );
   }
+
   // getBcsQuestions() {
-  //
-  //   this.bcsService.getBcsQuestions()
-  //     .subscribe(
-  //       questions => this.questions = questions,
-  //       error => console.log(error));
+  //   this.bcsService.getBcsQuestions();
   // }
+
   getBcsQuestions() {
-    this.bcsService.getBcsQuestions();
+    this.bcsService.getBcsQuestions()
+      .subscribe(data => console.log(data));
   }
 }
 
