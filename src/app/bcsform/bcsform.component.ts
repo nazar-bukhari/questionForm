@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Bcs} from '../bcs';
 import {HttpClient} from '@angular/common/http';
 import { BcsService } from '../bcs.service';
@@ -11,6 +11,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class BcsformComponent implements OnInit {
 
+  @ViewChild('bcsForm') bcsForm;
   questions: Bcs[];
 
   submitted = false;
@@ -38,8 +39,15 @@ export class BcsformComponent implements OnInit {
       }
     );
   }
-  editQuestion(id) {
-    console.log('id: ', id);
+  // https://stackoverflow.com/questions/35579302/angular2-update-form-control-value
+  editQuestion(question) {
+    this.bcsForm.controls['question'].setValue(question.question);
+    this.bcsForm.controls['optionOne'].setValue(question.optionOne);
+    this.bcsForm.controls['optionTwo'].setValue(question.optionTwo);
+    this.bcsForm.controls['optionThree'].setValue(question.optionThree);
+    this.bcsForm.controls['optionFour'].setValue(question.optionFour);
+    this.bcsForm.controls['rightAnswer'].setValue(question.rightAnswer);
+    this.bcsForm.controls['remark'].setValue(question.remark);
   }
 }
 

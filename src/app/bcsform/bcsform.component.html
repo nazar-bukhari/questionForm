@@ -82,7 +82,7 @@
              [(ngModel)]="bcsQuestion.remark" name="remark">
     </div>
 
-    <button type="submit" class="btn btn-default" [disabled]="!bcsForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-default" id="save" [disabled]="!bcsForm.form.valid">Submit</button>
 
   </form>
 
@@ -114,7 +114,7 @@
         <td>{{question.optionFour}}</td>
         <td>{{question.rightAnswer}}</td>
         <td>{{question.remark}}</td>
-        <td><button type="submit" (click)="editQuestion(question.id)">Edit</button></td>
+        <td><button type="submit" (click)="editQuestion(question)">Edit</button></td>
     </tr>
     </tbody>
   </table>
