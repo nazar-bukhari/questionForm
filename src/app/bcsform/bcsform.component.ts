@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Bcs} from '../bcs';
 import {HttpClient} from '@angular/common/http';
 import { BcsService } from '../bcs.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-bcsform',
@@ -36,8 +37,13 @@ export class BcsformComponent implements OnInit {
   // }
 
   getBcsQuestions() {
-    this.bcsService.getBcsQuestions()
-      .subscribe(data => console.log(data));
+    this.bcsService.getBcsQuestions().subscribe(
+      data => {
+        console.log(data)},
+      (err: HttpErrorResponse) => {
+        console.error(err);
+      }
+    );
   }
 }
 
