@@ -11,8 +11,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class BcsformComponent implements OnInit {
 
-  private questions: Bcs[];
-  errorMessage: String;
+  questions: Bcs[];
 
   submitted = false;
   bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2, 'NaN');
@@ -23,7 +22,6 @@ export class BcsformComponent implements OnInit {
 
   onSubmit(bcsForm) {
     this.submitted = true;
-    // console.log(bcsForm.value);
     this.http
       .post('http://127.0.0.1:8888/questions/save', bcsForm.value)
       .subscribe(
@@ -32,18 +30,16 @@ export class BcsformComponent implements OnInit {
       );
   }
 
-  // getBcsQuestions() {
-  //   this.bcsService.getBcsQuestions();
-  // }
-
   getBcsQuestions() {
     this.bcsService.getBcsQuestions().subscribe(
-      data => {
-        console.log(data)},
+      data => this.questions = data,
       (err: HttpErrorResponse) => {
         console.error(err);
       }
     );
+  }
+  editQuestion(id) {
+    console.log('id: ', id);
   }
 }
 

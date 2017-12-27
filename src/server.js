@@ -46,7 +46,7 @@ function saveQuestion(req,res){
 
 function getAllQuestions(req,res){
 
-  let sql = 'select * from questions';
+  let sql = 'select * from questions order by id desc';
   connection.query(sql,function (err, row, fields) {
     if(err) throw err;
     res.send(row);

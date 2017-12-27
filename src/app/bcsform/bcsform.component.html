@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Question Form</h1>
   <a href="/src/app/allquestions.html" target="_blank">Show All Questions</a>
-  <form  #bcsForm="ngForm" (ngSubmit)="onSubmit(bcsForm)">
+  <form #bcsForm="ngForm" (ngSubmit)="onSubmit(bcsForm)">
 
     <div class="form-group">
       <label for="question">Question:</label>
@@ -86,14 +86,37 @@
 
   </form>
 
-  <div>
-    <ul>
-      <li *ngFor="let question of questions">
-        ok{{ question.optionOne }}
-      </li>
-    </ul>
-  </div>
-
-
+  <!--<div>-->
+  <!--<ul>-->
+  <!--<li *ngFor="let question of questions">-->
+  <!--{{ question.question }} {{question.optionOne}}-->
+  <!--</li>-->
+  <!--</ul>-->
+  <!--</div>-->
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <td>Question</td>
+      <td>Option One</td>
+      <td>Option Two</td>
+      <td>Option Three</td>
+      <td>OPtion Four</td>
+      <td>Right Answer</td>
+      <td>Remark</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let question of questions">
+        <td>{{question.question}}</td>
+        <td>{{question.optionOne}}</td>
+        <td>{{question.optionTwo}}</td>
+        <td>{{question.optionThree}}</td>
+        <td>{{question.optionFour}}</td>
+        <td>{{question.rightAnswer}}</td>
+        <td>{{question.remark}}</td>
+        <td><button type="submit" (click)="editQuestion(question.id)">Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
 
 </div>
