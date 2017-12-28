@@ -1,16 +1,15 @@
 <div class="container">
   <h1>Question Form</h1>
-  <a href="/src/app/allquestions.html" target="_blank">Show All Questions</a>
-  <form #bcsForm="ngForm" (ngSubmit)="onSubmit(bcsForm)">
+  <form #bcsForm="ngForm">
 
     <div class="form-group">
-      <label for="question">Question:</label>
-      <textarea class="form-control" id="question"
+      <label for="examQuestion">Question:</label>
+      <textarea class="form-control" id="examQuestion"
                 required
-                [(ngModel)]="bcsQuestion.question" name="question"
-                #question="ngModel">
+                [(ngModel)]="bcsQuestion.examQuestion" name="examQuestion"
+                #examQuestion="ngModel">
       </textarea>
-      <div [hidden]="question.valid || question.pristine"
+      <div [hidden]="examQuestion.valid || examQuestion.pristine"
            class="alert alert-danger">
         Question is Required
       </div>
@@ -82,17 +81,11 @@
              [(ngModel)]="bcsQuestion.remark" name="remark">
     </div>
 
-    <button type="submit" class="btn btn-default" id="save" [disabled]="!bcsForm.form.valid">Submit</button>
-
   </form>
 
-  <!--<div>-->
-  <!--<ul>-->
-  <!--<li *ngFor="let question of questions">-->
-  <!--{{ question.question }} {{question.optionOne}}-->
-  <!--</li>-->
-  <!--</ul>-->
-  <!--</div>-->
+  <button type="submit" class="btn btn-default" #save [disabled]="!bcsForm.form.valid" (click)="onSubmit(bcsForm)">Submit</button>
+  <button type="submit" class="btn btn-default" #update [disabled]="true" (click)="updateBcsQuestion(bcsForm)" >Update</button>
+
   <table class="table table-bordered table-striped">
     <thead>
     <tr>

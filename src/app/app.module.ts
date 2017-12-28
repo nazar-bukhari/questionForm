@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BcsformComponent } from './bcsform/bcsform.component';
-import { BcsService } from './bcs.service';
+import { BcsService } from './services/bcs.service';
 
 
 @NgModule({

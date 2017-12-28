@@ -1,7 +1,7 @@
 export class Bcs {
 
   constructor(
-    public question: string,
+    public examQuestion: string,
     public optionOne: string,
     public optionTwo: string,
     public optionThree: string,
@@ -10,6 +10,6 @@ export class Bcs {
     public remark?: string
   ) {}
 
-  // let bcsQuestion = new Bcs('question one','op1','op2','op3','op4',2,'NaN');
+  // let bcsQuestion = new Bcs('examQuestion one','op1','op2','op3','op4',2,'NaN');
   // console.log(bcsQuestion);
 }
