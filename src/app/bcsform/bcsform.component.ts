@@ -18,6 +18,7 @@ export class BcsformComponent implements OnInit {
   @ViewChild('bcsForm') bcsForm;
   @ViewChild('update') update;
   @ViewChild('save') save;
+  p = 1;
   questions: Bcs[];
   updateQuestionId: String;
 

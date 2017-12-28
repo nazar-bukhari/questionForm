@@ -30,7 +30,7 @@ app.delete('/removeQuestion/:id',removeQuestion);
 
 function saveQuestion(req,res){
 
-  let sql = "insert into questions(examQuestion,optionOne,optionTwo,optionThree,optionFour,rightAnswer,remark)" +
+  let sql = "insert into questions(question,optionOne,optionTwo,optionThree,optionFour,rightAnswer,remark)" +
     " values(" + connection.escape(req.body.examQuestion) + "," + connection.escape(req.body.optionOne) + "," +
     connection.escape(req.body.optionTwo) + "," + connection.escape(req.body.optionThree) + "," + connection.escape(req.body.optionFour) + "," +
     connection.escape(req.body.rightAnswer) + "," + connection.escape(req.body.remark) + ")";
