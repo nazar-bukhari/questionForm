@@ -108,6 +108,7 @@
         <td>{{question.rightAnswer}}</td>
         <td>{{question.remark}}</td>
         <td><button type="submit" (click)="editQuestion(question)">Edit</button></td>
+        <td><button type="submit" (click)="removeQuestion(question.id)">Delete</button></td>
     </tr>
     </tbody>
   </table>

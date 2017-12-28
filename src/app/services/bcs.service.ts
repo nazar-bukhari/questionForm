@@ -11,6 +11,7 @@ export class BcsService {
 
   private readonly bcsAllQuestionsUrl = 'http://localhost:8888/getAllQuestions';
   private readonly updateQuestionUrl = 'http://localhost:8888/updateQuestion/';
+  private readonly removeQuestionUrl = 'http://localhost:8888/removeQuestion/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +21,10 @@ export class BcsService {
   }
   updateQuestion(bcsForm, id): Observable<Bcs[]> {
     return this.httpClient.put(this.updateQuestionUrl + id , bcsForm.value)
+      .catch(this.handleErrorObservable);
+  }
+  removeQuestion(id): Observable<Bcs[]> {
+    return this.httpClient.delete(this.removeQuestionUrl + id)
       .catch(this.handleErrorObservable);
   }
 

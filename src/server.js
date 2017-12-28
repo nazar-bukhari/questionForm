@@ -26,6 +26,7 @@ app.use(cors({origin: 'http://localhost:4200'}));
 app.post('/questions/save',saveQuestion);
 app.get('/getAllQuestions',getAllQuestions);
 app.put('/updateQuestion/:id',updateQuestion);
+app.delete('/removeQuestion/:id',removeQuestion);
 
 function saveQuestion(req,res){
 
@@ -68,6 +69,15 @@ function updateQuestion(req,res){
             " where id = "+ connection.escape(req.params.id);
   connection.query(sql,function (err, row) {
     if(err) throw err;
+    res.send(row);
+  });
+}
+
+function removeQuestion(req, res) {
+
+  let sql = 'delete from questions where id='+ connection.escape(req.params.id);
+  connection.query(sql,function (err, row) {
+    if (err) console.error(err);
     res.send(row);
   });
 }

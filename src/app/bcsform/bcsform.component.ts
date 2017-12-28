@@ -74,5 +74,11 @@ export class BcsformComponent implements OnInit {
     this.save.nativeElement.disabled = true;
   }
 
+  removeQuestion(id) {
+    this.bcsService.removeQuestion(id)
+      .subscribe( data => console.log('data: ', data),
+                  err => alert('Server Error.Data Not deleted'));
+  }
+
 }
 
