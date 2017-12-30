@@ -20,10 +20,19 @@ export class BcsformComponent implements OnInit {
   @ViewChild('save') save;
   p = 1;
   questions: Bcs[];
+  response: any;
   updateQuestionId: String;
 
   submitted = false;
   bcsQuestion = new Bcs('Who did what?', 'op1', 'op2', 'op3', 'op4', 2, 'NaN');
+  questionCategory = [
+    {value: 'bcs', viewValue: 'BCS'},
+    {value: 'bank', viewValue: 'Bank'},
+    {value: 'govt', viewValue: 'Govt'},
+    {value: 'ssc', viewValue: 'SSC'},
+    {value: 'hsc', viewValue: 'HSC'},
+  ];
+
 
   constructor(private bcsService: BcsService, private http: HttpClient) {
   }
@@ -33,13 +42,15 @@ export class BcsformComponent implements OnInit {
   }
 
   onSubmit(bcsForm) {
+
     this.submitted = true;
     this.http
       .post('http://127.0.0.1:8888/questions/save', bcsForm.value)
       .subscribe(
-        data => console.log('data: ', data),
-        err => alert('Server Error.Data Not Saved')
+        data => this.response = data,
+        err => console.log(err),
       );
+    this.bcsForm.reset();
   }
 
   getBcsQuestions() {
@@ -56,9 +67,11 @@ export class BcsformComponent implements OnInit {
     this.save.nativeElement.disabled = false;
     console.log('updateQuestionId: ', this.updateQuestionId);
     this.bcsService.updateQuestion(bcsForm, this.updateQuestionId)
-      .subscribe( data => console.log('data: ', data),
-                  err => alert('Server Error.Data Not Saved')
+      .subscribe(data => console.log('data: ', data),
+        err => alert('Server Error.Data Not Saved')
       );
+    location.reload();
+    this.bcsForm.reset();
   }
 
   // https://stackoverflow.com/questions/35579302/angular2-update-form-control-value
@@ -77,8 +90,9 @@ export class BcsformComponent implements OnInit {
 
   removeQuestion(id) {
     this.bcsService.removeQuestion(id)
-      .subscribe( data => console.log('data: ', data),
-                  err => alert('Server Error.Data Not deleted'));
+      .subscribe(data => console.log('data: ', data),
+        err => alert('Server Error.Data Not deleted'));
+    location.reload();
   }
 
 }

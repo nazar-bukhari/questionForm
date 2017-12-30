@@ -7,6 +7,7 @@ export class Bcs {
     public optionThree: string,
     public optionFour: string,
     public rightAnswer: number,
+    public category: String,
     public remark?: string
   ) {}
 
